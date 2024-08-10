@@ -51,8 +51,7 @@ const firstShoppingList = [
         unitPrice: 45,
     },
 ];
-// console.log(firstShoppingList[firstShoppingList.length-1].id);
-// console.log(firstShoppingList);
+
 console.log(shoppingList(firstShoppingList));
 /*
 Jūsų prekių krepšelyje yra 3 prekės:
