@@ -1,6 +1,5 @@
 import { shoppingList } from "./js/shoppingList.js";
 import { productDetails } from "./js/productDetails.js";
-
 // Vieta reikiamų failų importavimui... jei reikia tokių 👀
 
 /*
@@ -18,13 +17,9 @@ Vienintelė išimtis, kada gali nesutapti spausdinamas rezultatas, jei kurdamas 
 const emptyList = [];
 
 console.log(shoppingList(emptyList));
-
 /*
 Šiuo metu, jūsų prekių krepšelis yra tuščias.
 */
-
-
-
 
 console.log(productDetails(emptyList, 42069));
 /*
@@ -117,7 +112,7 @@ const singleProductShoppingList = [
     },
 ];
 
-// console.log(shoppingList(singleProductShoppingList));
+console.log(shoppingList(singleProductShoppingList));
 /*
 Jūsų prekių krepšelyje yra 1 prekė:
 --------------------------------------------------
