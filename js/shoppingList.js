@@ -13,12 +13,12 @@ export function shoppingList(object) {
         : list.name === '' || typeof(list.name) !== 'string' ? 'Name error' //Jei nera prekes pavadinimo arba pavadinimas yra ne  string tipo isvedama klaida.
         : list.amount > 1 && list.name.endsWith('i') ? list.name + 'ai' //Jei prekių kiekis baigiasi skaičiumi didesniu negu 1 ir jo pavadinime paskutnė raidė i, formuojama daugiskaita specifiniam zodziui Kivi > Kiviai
         : list.name.slice(0, -2) + 'ai'; //Formuojama daugiskaita likusiems pavadinimams
-        const msgAmount = list.amount <= 0 ? 'Amount error ' //Jeigu prekiu kiekis neigiamas formuojama klaida
+        const msgAmount = list.amount <= 0 ? 'errNegAmount ' //Jeigu prekiu kiekis neigiamas formuojama klaida
         : list.amount + ' vnt \t';
-        const msgPay = list.amount <= 0 ? 'Amount error '//Jeigu prekiu kiekis neigiamas formuojama klaida viso moketi sklityje taip pat
-        : (list.amount*list.unitPrice/100) < 0 ? 'Price error' //Jei paskaiciuota kaina zemiau 0 gauname klaida
+        const msgPay = list.amount <= 0 ? 'errNegAmount '//Jeigu prekiu kiekis neigiamas formuojama klaida viso moketi sklityje taip pat
+        : (list.amount*list.unitPrice/100) < 0 ? 'errNegPrc' //Jei paskaiciuota kaina zemiau 0 gauname klaida
         : (list.amount*list.unitPrice/100).toFixed(2) + ' eur';//Likusiu atveju isvedame kaina
-        const msgPrice = list.unitPrice <= 0 ? 'Price error' //Jei vieneto kaina mazesne negu 0 isvedame klaida
+        const msgPrice = list.unitPrice <= 0 ? 'errNegPrc' //Jei vieneto kaina mazesne negu 0 isvedame klaida
         :(list.unitPrice/100).toFixed(2)+ ' eur';
 
         count += (index + '. ' + msgName.padEnd(13) + ' | '+ msgAmount + ' | ' + msgPrice +'\t | ' + msgPay + '\n' );//Auginame eilutes su kiekviena skirtinga preke
