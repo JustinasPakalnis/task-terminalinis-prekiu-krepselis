@@ -141,24 +141,3 @@ Viso mokėti   | 3.22 Eur
 */
 
 
-
-
-
-console.log('NAMU DARBAS vardo (bendraties forma) konvertavimas');
-;
-
-function converter(vardas) { 
-    const result = vardas.endsWith('ė') ? vardas.slice(0, -1) + 'e'
-    : vardas.endsWith('as') ? vardas.slice(0, -1) + 'i'
-    : vardas.endsWith('us') ? vardas.slice(0, -2) + 'au'
-    : vardas
-    return 'Sveiki, ' + result + '!';
-}
-
-console.log(converter('Jonas'));
-console.log(converter('Petras'));
-console.log(converter('Ona'));
-console.log(converter('Marytė'));
-console.log(converter('Darius'));
-console.log(converter('Marija'));
-
