@@ -7,12 +7,21 @@ export function shoppingList(object) {
     const annotation = 'Jūsų prekių krepšelyje yra ' + object.length + msg + '\n' + '-'.repeat(66) + '\n' + 'Pavadinimas\t | ' +  'Kiekis\t | '  +  'Vieneto Kaina | ' +  'Viso mokėti'  + '\n'  + '-'.repeat(66) + '\n';//Formuojamas pirmas pranešimas
     if (object.length === 0) { 
         return 'Šiuo metu, jūsų prekių krepšelis yra tuščias.';//Jeigu krepšelis tuščias
-    }
+    } 
     for (const list of object) { //Einame per objektus masyve
-        const msg = list.amount % 10 === 1 ? list.name //Jei prekių kiekis baigiasi skaičiumi 1, duodame žodi vienaskaitos forma
-        : list.amount > 1 && list.name.endsWith('i') ? list.name + 'ai' //Jei prekių kiekis baigiasi skaičiumi didesniu negu 1 ir jo pavadinime paskutnė raidė i, formuojama daugiskaita
+        const msgName = list.amount === 1 ? list.name //Jei prekių kiekis 1, duodame žodi vienaskaitos forma 1 agurkas
+        : list.name === '' ? 'Name error' //Jei nera prekes pavadinimo isvedama klaida.
+        : list.amount > 1 && list.name.endsWith('i') ? list.name + 'ai' //Jei prekių kiekis baigiasi skaičiumi didesniu negu 1 ir jo pavadinime paskutnė raidė i, formuojama daugiskaita specifiniam zodziui Kivi > Kiviai
         : list.name.slice(0, -2) + 'ai'; //Formuojama daugiskaita likusiems pavadinimams
-        count += (index + '. ' + msg.padEnd(13) + ' | '+ list.amount + ' vnt \t | ' + (list.unitPrice/100).toFixed(2) + ' eur\t | ' + (list.amount*list.unitPrice/100).toFixed(2) + ' eur\n' );//Auginame eilutes su kiekviena skirtinga preke
+        const msgAmount = list.amount <= 0 ? 'Amount error ' //Jeigu prekiu kiekis neigiamas formuojama klaida
+        : list.amount + ' vnt \t';
+        const msgPay = list.amount <= 0 ? 'Amount error '//Jeigu prekiu kiekis neigiamas formuojama klaida viso moketi sklityje taip pat
+        : (list.amount*list.unitPrice/100) < 0 ? 'Price error'
+        : (list.amount*list.unitPrice/100).toFixed(2) + ' eur';
+        const msgPrice = list.unitPrice <= 0 ? 'Price error' 
+        :(list.unitPrice/100).toFixed(2)+ ' eur';
+
+        count += (index + '. ' + msgName.padEnd(13) + ' | '+ msgAmount + ' | ' + msgPrice +'\t | ' + msgPay + '\n' );//Auginame eilutes su kiekviena skirtinga preke
         index++;//eiles tvarka 
     }
     return annotation + count + '-'.repeat(66) + '\n';//galutinis pranešimas

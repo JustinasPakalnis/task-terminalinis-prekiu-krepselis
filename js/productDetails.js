@@ -1,6 +1,8 @@
 export function productDetails(object, id) {
     if (object.length === 0) {
     return 'Prekė, su ID: ' + id + ' neegzistuoja. Krepšelis yra tuščias'; //Jei krepšelis tuščias
+    } else if (!Number.isInteger(id)){ //Tikrinam ar ivestas id yra skaičius
+        return 'Reikia įvesti prekės ID kuris yra sveikasis skaičius';
     }
     for (const idCheck of object) {
         if (idCheck.id === id) {

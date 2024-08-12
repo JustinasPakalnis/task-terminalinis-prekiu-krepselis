@@ -36,7 +36,7 @@ const firstShoppingList = [
     {
         id: 3,
         name: 'Agurkas',
-        amount: 2,
+        amount: 10,
         unitPrice: 50,
     },
     {
