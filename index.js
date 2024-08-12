@@ -36,7 +36,7 @@ const firstShoppingList = [
     {
         id: 3,
         name: 'Agurkas',
-        amount: 10,
+        amount: 2,
         unitPrice: 50,
     },
     {
@@ -139,5 +139,3 @@ Vieneto kaina | 0.14 Eur
 Viso mokėti   | 3.22 Eur
 ------------------------
 */
-
-
