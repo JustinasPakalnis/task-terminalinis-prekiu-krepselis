@@ -1,6 +1,6 @@
 export function shoppingList(object) {
     let count = ''; //Dėžutė kuri pildysis for cikle einant per prekes ir bus išspausdinama
-    let index = 1; //pradedam nuo pirmo objekto masyve
+    let index = 1; //Eilės tvarka prasideda nuo 1
     const msg = object.length === 1 ? ' prekė: ' 
     : object.length >=  10 ? ' prekių: '
     : ' prekės: ' ; //Formuojamas daugiskaita/vienaskaita žodis pranešimui
@@ -13,7 +13,7 @@ export function shoppingList(object) {
         : list.amount > 1 && list.name.endsWith('i') ? list.name + 'ai' //Jei prekių kiekis baigiasi skaičiumi didesniu negu 1 ir jo pavadinime paskutnė raidė i, formuojama daugiskaita
         : list.name.slice(0, -2) + 'ai'; //Formuojama daugiskaita likusiems pavadinimams
         count += (index + '. ' + msg.padEnd(13) + ' | '+ list.amount + ' vnt \t | ' + (list.unitPrice/100).toFixed(2) + ' eur\t | ' + (list.amount*list.unitPrice/100).toFixed(2) + ' eur\n' );//Auginame eilutes su kiekviena skirtinga preke
-        index++;//darome žingsnį į sekantį objektą
+        index++;//eiles tvarka 
     }
     return annotation + count + '-'.repeat(66) + '\n';//galutinis pranešimas
     
