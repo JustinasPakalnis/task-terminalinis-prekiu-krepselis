@@ -4,7 +4,7 @@ export function shoppingList(object) {
     } 
     let count = ''; //Dėžutė kuri pildysis for cikle einant per prekes ir bus išspausdinama
     let index = 1; //Eilės tvarka prasideda nuo 1
-    const len1st = Math.max(...object.map(o => o.name.length)) > 12 ? Math.max(...object.map(o => o.name.length)) : 8 ; //Jei ilgiausias prekės pavadinimas ilgesnis už 'Pavadinimas' pad end bus ilgiausia prekės pavadinimas, kitus atveju 'pavadinimnas' ilgio
+    const len1st = Math.max(...object.map(o => o.name.length)) > 11 ? Math.max(...object.map(o => o.name.length)) : 8 ; //Jei ilgiausias prekės pavadinimas ilgesnis už 'Pavadinimas' pad end bus ilgiausia prekės pavadinimas, kitus atveju 'pavadinimnas' ilgio
     const len2nd = Math.max(...object.map(o => o.amount)).toString().length > 6 ? Math.max(...object.map(o => o.amount)).toString().length : 6; //Jei ilgiausias kiekio tekstas ilgesnis už 'Kiekis' pad end bus kiekio tekstas, kitus atveju 'Kiekis' ilgio
     const len3rd = Math.max(...object.map(o => o.unitPrice)).toString().length > 13 ? Math.max(...object.map(o => o.unitPrice)).toString().length : 8;//Jei ilgiausias prekės price tekstas ilgesnis už 'Vieneto Kaina' pad end bus kiekio tekstas, kitus atveju 'Vieneto kaina' ilgio
     const lenTotal = (Math.max(...object.map(o => o.name.length)) + Math.max(...object.map(o => o.amount)).toString().length + Math.max(...object.map(o => o.unitPrice)).toString().length) + 32 < 50 ? 47 : (Math.max(...object.map(o => o.name.length)) + Math.max(...object.map(o => o.amount)).toString().length + Math.max(...object.map(o => o.unitPrice)).toString().length) + 32; //Bendro simboliu kiekio eiluteje padidėjimo skaičiavimas.
