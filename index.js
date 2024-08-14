@@ -48,8 +48,6 @@ const firstShoppingList = [
 ];
 
 console.log(shoppingList(firstShoppingList));
-
-    
 /*
 Jūsų prekių krepšelyje yra 3 prekės:
 -----------------------------------------------------------
