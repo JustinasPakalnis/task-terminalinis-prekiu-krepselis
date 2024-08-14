@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "index": "node --watch ./index.js",
+    "list": "node --watch ./js/shoppingList.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

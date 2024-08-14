@@ -4,15 +4,17 @@ export function shoppingList(object) {
     } 
     let count = ''; //Dėžutė kuri pildysis for cikle einant per prekes ir bus išspausdinama
     let index = 1; //Eilės tvarka prasideda nuo 1
-    const len1st = Math.max(...object.map(o => o.name.length)) > 11 ? Math.max(...object.map(o => o.name.length)) : 8 ; //Jei ilgiausias prekės pavadinimas ilgesnis už 'Pavadinimas' pad end bus ilgiausia prekės pavadinimas, kitus atveju 'pavadinimnas' ilgio
-    const len2nd = Math.max(...object.map(o => o.amount)).toString().length > 6 ? Math.max(...object.map(o => o.amount)).toString().length : 6; //Jei ilgiausias kiekio tekstas ilgesnis už 'Kiekis' pad end bus kiekio tekstas, kitus atveju 'Kiekis' ilgio
-    const len3rd = Math.max(...object.map(o => o.unitPrice)).toString().length > 13 ? Math.max(...object.map(o => o.unitPrice)).toString().length : 8;//Jei ilgiausias prekės price tekstas ilgesnis už 'Vieneto Kaina' pad end bus kiekio tekstas, kitus atveju 'Vieneto kaina' ilgio
+    const len1st = Math.max(...object.map(o => o.name.length)) < 'Pavadinimas'.length ? 'Pavadinimas'.length : Math.max(...object.map(o => o.name.length)) ; //Jei ilgiausias prekės pavadinimas ilgesnis už 'Pavadinimas' pad end bus ilgiausia prekės pavadinimas, kitus atveju 'pavadinimnas' ilgio
+    const len2nd = Math.max(...object.map(o => o.amount)).toString().length > 'Kiekis'.length ? Math.max(...object.map(o => o.amount)).toString().length : 'Kiekis'.length; //Jei ilgiausias kiekio tekstas ilgesnis už 'Kiekis' pad end bus kiekio teksto ilgio, kitus atveju 'Kiekis' ilgio
+    const len3rd = Math.max(...object.map(o => o.unitPrice)).toString().length > 'Vieneto Kaina'.length ? Math.max(...object.map(o => o.unitPrice)).toString().length : 'Vieneto Kaina'.length;//Jei ilgiausias prekės price tekstas ilgesnis už 'Vieneto Kaina' pad end bus kiekio tekstas, kitus atveju 'Vieneto kaina' ilgio
     const lenTotal = (Math.max(...object.map(o => o.name.length)) + Math.max(...object.map(o => o.amount)).toString().length + Math.max(...object.map(o => o.unitPrice)).toString().length) + 32 < 50 ? 47 : (Math.max(...object.map(o => o.name.length)) + Math.max(...object.map(o => o.amount)).toString().length + Math.max(...object.map(o => o.unitPrice)).toString().length) + 32; //Bendro simboliu kiekio eiluteje padidėjimo skaičiavimas.
+
+    
     const msg = object.length === 1 ? ' prekė: ' 
     : object.length >=  10 ? ' prekių: '
     : ' prekės: ' ; //Formuojamas daugiskaita/vienaskaita žodis pranešimui
     const annotationDeclare = 'Jūsų prekių krepšelyje yra ' + object.length + msg + '\n' ;//Formuojama pranešimo pirma dalis
-    const annotationAdd = 'Pavadinimas'.padEnd(len1st+4) + ' | ' +  'Kiekis'.padEnd(len2nd+4) + ' | '  +  'Vieneto Kaina'.padEnd(len3rd+5) + ' | ' +  'Viso mokėti' ;//Formuojama pranešimo antra dalis
+    const annotationAdd = 'Pavadinimas'.padEnd(len1st+3) + ' | ' +  'Kiekis'.padEnd(len2nd + 5) + ' | '  +  'Vieneto Kaina'.padEnd(len3rd + 5) + ' | ' +  'Viso mokėti' ;//Formuojama pranešimo antra dalis
 
 
     for (const list of object) { //Einame per objektus masyve
@@ -22,16 +24,16 @@ export function shoppingList(object) {
         : list.name.slice(0, -2) + 'ai'; //Formuojama daugiskaita likusiems pavadinimams
         const msgAmount = list.amount <= 0 ? 'Amnt err' //Jeigu prekiu kiekis neigiamas formuojama klaida
         : list.amount + ' vnt';
-        var msgPay = list.amount <= 0 ? 'Amnt err'//VAR NES REIKIA PASIIMTI msgPay ilgi dadeti bendrai linijai. Jeigu prekiu kiekis neigiamas formuojama klaida viso moketi sklityje taip pat
+        const msgPay = list.amount <= 0 ? 'Amnt err'//Jeigu prekiu kiekis neigiamas formuojama klaida viso moketi sklityje taip pat
         : (list.amount*list.unitPrice/100) < 0 ? 'errNegPrc' //Jei paskaiciuota kaina zemiau 0 gauname klaida
         : (list.amount*list.unitPrice/100).toFixed(2) + ' eur';//Likusiu atveju isvedame kaina
         const msgPrice = list.unitPrice <= 0 ? 'errNegPrc' //Jei vieneto kaina mazesne negu 0 isvedame klaida
         :(list.unitPrice/100).toFixed(2)+ ' eur';
 
-        count += (index + '. ' + msgName.padEnd(len1st+1) + ' | ' + msgAmount.padEnd(len2nd+4) + ' | ' + msgPrice.padEnd(len3rd+5) +' | ' + msgPay + '\n' );//Auginame eilutes su kiekviena skirtinga preke
+        count += (index + '. ' + msgName.padEnd(len1st) + ' | ' + msgAmount.padEnd(len2nd + 5) + ' | ' + msgPrice.padEnd(len3rd + 5) +' | ' + msgPay + '\n' );//Auginame eilutes su kiekviena skirtinga preke
         index++;//eiles tvarka padideja
     }
-    return  annotationDeclare + '-'.repeat(lenTotal+msgPay.toString().length) + '\n' + annotationAdd + '\n' + '-'.repeat(lenTotal+msgPay.toString().length) + '\n' + count + '-'.repeat(lenTotal+msgPay.toString().length) + '\n';//galutinis pranešimas
+     return  annotationDeclare + '-'.repeat(lenTotal+16) + '\n' + annotationAdd + '\n' + '-'.repeat(lenTotal+16) + '\n' + count + '-'.repeat(lenTotal+16) + '\n';//galutinis pranešimas
+   
     
 }
-
