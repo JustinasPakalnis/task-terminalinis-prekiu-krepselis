@@ -7,7 +7,7 @@ export function shoppingList(object) {
     const len1st = Math.max(...object.map(o => o.name.length)) > 12 ? Math.max(...object.map(o => o.name.length)) : 8 ; //Jei ilgiausias prekės pavadinimas ilgesnis už 'Pavadinimas' pad end bus ilgiausia prekės pavadinimas, kitus atveju 'pavadinimnas' ilgio
     const len2nd = Math.max(...object.map(o => o.amount)).toString().length > 6 ? Math.max(...object.map(o => o.amount)).toString().length : 6; //Jei ilgiausias kiekio tekstas ilgesnis už 'Kiekis' pad end bus kiekio tekstas, kitus atveju 'Kiekis' ilgio
     const len3rd = Math.max(...object.map(o => o.unitPrice)).toString().length > 13 ? Math.max(...object.map(o => o.unitPrice)).toString().length : 8;//Jei ilgiausias prekės price tekstas ilgesnis už 'Vieneto Kaina' pad end bus kiekio tekstas, kitus atveju 'Vieneto kaina' ilgio
-    const lenTotal = (Math.max(...object.map(o => o.name.length)) + Math.max(...object.map(o => o.amount)).toString().length + Math.max(...object.map(o => o.unitPrice)).toString().length) + 40; //Bendro simboliu kiekio eiluteje padidėjimo skaičiavimas.
+    const lenTotal = (Math.max(...object.map(o => o.name.length)) + Math.max(...object.map(o => o.amount)).toString().length + Math.max(...object.map(o => o.unitPrice)).toString().length) + 32 < 50 ? 47 : (Math.max(...object.map(o => o.name.length)) + Math.max(...object.map(o => o.amount)).toString().length + Math.max(...object.map(o => o.unitPrice)).toString().length) + 32; //Bendro simboliu kiekio eiluteje padidėjimo skaičiavimas.
     const msg = object.length === 1 ? ' prekė: ' 
     : object.length >=  10 ? ' prekių: '
     : ' prekės: ' ; //Formuojamas daugiskaita/vienaskaita žodis pranešimui
@@ -22,7 +22,7 @@ export function shoppingList(object) {
         : list.name.slice(0, -2) + 'ai'; //Formuojama daugiskaita likusiems pavadinimams
         const msgAmount = list.amount <= 0 ? 'Amnt err' //Jeigu prekiu kiekis neigiamas formuojama klaida
         : list.amount + ' vnt';
-        var msgPay = list.amount <= 0 ? 'Amnt err'//Jeigu prekiu kiekis neigiamas formuojama klaida viso moketi sklityje taip pat
+        var msgPay = list.amount <= 0 ? 'Amnt err'//VAR NES REIKIA PASIIMTI msgPay ilgi dadeti bendrai linijai. Jeigu prekiu kiekis neigiamas formuojama klaida viso moketi sklityje taip pat
         : (list.amount*list.unitPrice/100) < 0 ? 'errNegPrc' //Jei paskaiciuota kaina zemiau 0 gauname klaida
         : (list.amount*list.unitPrice/100).toFixed(2) + ' eur';//Likusiu atveju isvedame kaina
         const msgPrice = list.unitPrice <= 0 ? 'errNegPrc' //Jei vieneto kaina mazesne negu 0 isvedame klaida
