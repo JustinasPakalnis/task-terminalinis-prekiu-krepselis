@@ -1,20 +1,46 @@
+import { fixedPrice } from "./helpers.js";
+
 export function productDetails(object, id) {
-    if (object.length === 0) {
-    return 'Prekė, su ID: ' + id + ' neegzistuoja, nes krepšelis yra tuščias.'; //Jei krepšelis tuščias
-    } else if (!Number.isInteger(id)){ //Tikrinam ar ivestas id yra skaičius
-        return 'Reikia įvesti prekės ID kuris yra sveikasis skaičius';
+  if (object.length === 0) {
+    return "Prekė, su ID: " + id + " neegzistuoja, nes krepšelis yra tuščias."; //Jei krepšelis tuščias
+  }
+  if (!Number.isInteger(id)) {
+    return "Reikia įvesti prekės ID kuris yra sveikasis skaičius";
+  }
+
+  const splitter = " | ";
+  const lineName = "Prekės informacija";
+  const objID = "ID";
+  const objID1 = "Pavadinimas";
+  const objID2 = "Kiekis";
+  const objID3 = "Vieneto Kaina";
+  console.log(objID3.length);
+
+  const objID4 = "Viso mokėti";
+  const lineBreak = "-".repeat(25);
+  let array = [];
+  array.push(objID, objID1, objID2, objID3, objID4);
+  console.log(array);
+
+  const maxLength = array.reduce((a, b) =>
+    a.length > b.length ? a : b
+  ).length;
+  console.log(maxLength);
+
+  for (const idCheck of object) {
+    if (idCheck.id === id) {
+      return `${lineBreak}
+${lineName}
+${lineBreak.padEnd(maxLength)}
+${objID.padEnd(maxLength)} | ${idCheck.id}
+${objID1.padEnd(maxLength)} | ${idCheck.name}
+${objID2.padEnd(maxLength)} | ${idCheck.amount} vnt
+${objID3.padEnd(maxLength)} | ${idCheck.unitPrice} Eur
+${objID4.padEnd(maxLength)} | ${fixedPrice(
+        idCheck.amount * idCheck.unitPrice
+      )} Eur
+${lineBreak}`;
     }
-    for (const idCheck of object) {
-        if (idCheck.id === id) {
-            return '-'.repeat(35) + '\nPrekės informacija\n' + '-'.repeat(35) + '\n' + 'ID\t\t| ' + idCheck.id + '\nPavadinimas\t| ' + idCheck.name + '\nKiekis\t\t| ' + idCheck.amount + ' vnt' + '\nVieneto kaina\t| ' + (idCheck.unitPrice/100).toFixed(2) + ' eur' + '\nViso mokėti\t| ' + (idCheck.amount*idCheck.unitPrice/100).toFixed(2)+ ' eur\n' + '-'.repeat(35) ; //Jei randama prekė, išvedama jos informacija                   
-        }           
-    }
-    return 'Prekė, su ID: ' + id + ' neegzistuoja.'; //Jei krepšelis netuščias bet ID neegzistuoja
+  }
+  return "Prekė, su ID: " + id + " neegzistuoja.";
 }
-
-
-
-
-
-
-

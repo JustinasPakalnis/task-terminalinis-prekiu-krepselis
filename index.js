@@ -27,24 +27,24 @@ Prekė, su ID: 42069 neegzistuoja.
 */
 
 const firstShoppingList = [
-    {
-        id: 1,
-        name: 'Pomidoras',
-        amount: 1000000,
-        unitPrice: 199,
-    },
-    {
-        id: 3,
-        name: 'Agurkas',
-        amount: 2,
-        unitPrice: 50,
-    },
-    {
-        id: 7,
-        name: 'Svogūnas',
-        amount: 1,
-        unitPrice: 45,
-    },
+  {
+    id: 1,
+    name: "Pomidoras",
+    amount: 1000000,
+    unitPrice: 199,
+  },
+  {
+    id: 3,
+    name: "Agurkas",
+    amount: 2,
+    unitPrice: 50,
+  },
+  {
+    id: 7,
+    name: "Svogūnas",
+    amount: 1,
+    unitPrice: 45,
+  },
 ];
 
 console.log(shoppingList(firstShoppingList));
@@ -104,12 +104,12 @@ Viso mokėti   | 0.45 Eur
 */
 
 const singleProductShoppingList = [
-    {
-        id: 2,
-        name: 'Kivi',
-        amount: 23,
-        unitPrice: 14,
-    },
+  {
+    id: 2,
+    name: "Kivi",
+    amount: 23,
+    unitPrice: 14,
+  },
 ];
 
 console.log(shoppingList(singleProductShoppingList));
