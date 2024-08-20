@@ -13,7 +13,7 @@ export function shoppingList(object) {
   const splitter = " | ";
   const listID1 = "Pavadinimas";
   const listID2 = "Kiekis";
-  const listID3 = "Vieneto Kaina";
+  const listID3 = "Vieneto kaina";
   const listID4 = "Viso mokėti";
   const unitName = " vnt";
   const currency = " Eur";
