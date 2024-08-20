@@ -10,41 +10,39 @@ export function productDetails(object, id) {
 
   const splitter = " | ";
   const lineName = "Prekės informacija";
+  const unitName = " vnt";
+  const currency = " Eur";
   const objID = "ID";
   const objID1 = "Pavadinimas";
   const objID2 = "Kiekis";
   const objID3 = "Vieneto Kaina";
   const objID4 = "Viso mokėti";
 
-  let array = [objID, objID1, objID2, objID3, objID4];
+  let arrIDLength = [
+    objID.length,
+    objID1.length,
+    objID2.length,
+    objID3.length,
+    objID4.length,
+  ];
 
-  //   const len2nd = Math.max(...object.map((o) => o)); //.toString().length + 4
-  //   console.log(len2nd);
-
-  const maxLength = array.reduce((a, b) =>
-    a.length > b.length ? a : b
-  ).length;
-  console.log(maxLength);
+  const maxLength = Math.max(...arrIDLength);
 
   const maxKey = [];
   for (const idCheck of object) {
     if (idCheck.id === id) {
       maxKey.push(idCheck.id.toString().length);
       maxKey.push(idCheck.name.length);
-      maxKey.push(idCheck.amount.toString().length + " vnt".length);
-      maxKey.push(fixedPrice(idCheck.unitPrice).length + " Eur".length);
+      maxKey.push(idCheck.amount.toString().length + unitName.length);
+      maxKey.push(fixedPrice(idCheck.unitPrice).length + currency.length);
       maxKey.push(
-        fixedPrice(idCheck.amount * idCheck.unitPrice).length + " Eur".length
+        fixedPrice(idCheck.amount * idCheck.unitPrice).length + currency.length
       );
     }
   }
+  const maxValueLengthCalculated = Math.max(...maxKey);
 
-  let maxValueCalculated = 0;
-  for (const counting of maxKey) {
-    maxValueCalculated =
-      counting > maxValueCalculated ? counting : maxValueCalculated;
-  }
-  const totalLine = maxLength + splitter.length + maxValueCalculated;
+  const totalLine = maxLength + splitter.length + maxValueLengthCalculated;
   const lineBreakChoice =
     totalLine > lineName.length ? totalLine : lineName.length;
 
@@ -54,14 +52,16 @@ export function productDetails(object, id) {
     if (idCheck.id === id) {
       return `${lineBreak}
 ${lineName}
-${lineBreak.padEnd(maxLength)}
-${objID.padEnd(maxLength)} | ${idCheck.id}
-${objID1.padEnd(maxLength)} | ${idCheck.name}
-${objID2.padEnd(maxLength)} | ${idCheck.amount} vnt
-${objID3.padEnd(maxLength)} | ${fixedPrice(idCheck.unitPrice)} Eur
-${objID4.padEnd(maxLength)} | ${fixedPrice(
+${lineBreak}
+${objID.padEnd(maxLength)}${splitter}${idCheck.id}
+${objID1.padEnd(maxLength)}${splitter}${idCheck.name}
+${objID2.padEnd(maxLength)}${splitter}${idCheck.amount}${unitName}
+${objID3.padEnd(maxLength)}${splitter}${fixedPrice(
+        idCheck.unitPrice
+      )}${currency}
+${objID4.padEnd(maxLength)}${splitter}${fixedPrice(
         idCheck.amount * idCheck.unitPrice
-      )} Eur
+      )}${currency}
 ${lineBreak}`;
     }
   }
