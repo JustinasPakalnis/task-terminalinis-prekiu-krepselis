@@ -9,6 +9,7 @@ export function shoppingList(object) {
   let count = "";
   let counter = 1;
   let index = 1;
+
   const splitter = " | ";
   const listID1 = "Pavadinimas";
   const listID2 = "Kiekis";
@@ -75,25 +76,26 @@ export function shoppingList(object) {
     listID4;
 
   for (const list of object) {
+    const Error = "Error";
     const msgName =
       list.amount === 1
         ? list.name
         : list.name === "" || typeof list.name !== "string"
-        ? "Name err"
+        ? Error
         : list.amount > 1 && list.name.endsWith("i")
         ? list.name + "ai"
         : list.name.slice(0, -2) + "ai";
 
-    const msgAmount = list.amount <= 0 ? "Amnt err" : list.amount + unitName;
+    const msgAmount = list.amount <= 0 ? Error : list.amount + unitName;
 
     const msgPrice =
-      list.unitPrice <= 0 ? "errNegPrc" : fixedPrice(list.unitPrice) + currency;
+      list.unitPrice <= 0 ? Error : fixedPrice(list.unitPrice) + currency;
 
     const msgPay =
       list.amount <= 0
-        ? "Amnt err"
-        : fixedPrice(list.amount * list.unitPrice) / 100 < 0
-        ? "errNegPrc"
+        ? Error
+        : fixedPrice(list.amount * list.unitPrice) < 0
+        ? Error
         : fixedPrice(list.amount * list.unitPrice) + currency;
 
     const rowIndex = `${index}. `;
