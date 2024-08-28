@@ -1,12 +1,10 @@
 {
   "name": "task-terminalinis-prekiu-krepselis",
   "version": "1.0.0",
-  "type":"module",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "index": "node --watch ./index.js",
-    "list": "node --watch ./js/shoppingList.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "index": "node --watch ./index.js"
   },
   "keywords": [],
   "author": "Justinas Pakalnis",
