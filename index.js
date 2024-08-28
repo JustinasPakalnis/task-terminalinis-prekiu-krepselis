@@ -107,7 +107,7 @@ const singleProductShoppingList = [
   {
     id: 2,
     name: "Kivi",
-    amount: 123,
+    amount: 23,
     unitPrice: 14,
   },
 ];
